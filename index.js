@@ -207,7 +207,7 @@ async function start() {
 
 Give the repo a ⭐️ to show your support!
 
-> © 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ 𝐁ʟᴀᴄᴋ-𝐓ᴀᴘᴘʏ`
+> _© Powered By Black-Tappy_`
                     });
                     
                     // --- MODIFIED: Automatically follow the channel on startup ---
