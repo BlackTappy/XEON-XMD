@@ -8,10 +8,27 @@ const menu = async (m, sock) => {
   if (cmd === "menu") {
     // --- NEW: Array of random fancy "loading" messages ---
     const fancyMessages = [
-        `> "Initializing connection...🌐",\n> "Establishing Bot commands...📂",\n> "Verifying commands credentials...😂",\n> "Connecting to WhatsApp API..🗝️.",\n> "Preparing menu 🆔..."\n> "Redirecting to menu commands...📜\n>Loading menu commands now...🟢`,
-        `> "Connecting to servers... 🛰️",\n> "Fetching command list... 📝",\n> "Authenticating user... 👤",\n> "Compiling menu... ⚙️",\n> "Almost there... ⏳"\n> "Displaying menu now... ✅`,
-        `> "Waking up the bot... 😴",\n> "Brewing some coffee... ☕",\n> "Checking for updates... 🔄",\n> "Loading all modules... 📦",\n> "Unleashing the menu... 💥"`,
-        `> "Accessing mainframe... 💻",\n> "Decrypting command protocols... 🛡️",\n> "Calibrating response time... ⚡",\n> "Generating menu interface... 🎨",\n> "Welcome, user... 👋"`
+    "Initializing connection...🌐",
+    "Establishing Bot commands...📂",
+    "Verifying credentials...😂",
+    "Connecting to WhatsApp API...🗝️",
+    "Preparing menu...🆔",
+    "Redirecting to commands...📜",
+    "Connecting to servers...🛰️",
+    "Fetching command list...📝",
+    "Authenticating user...👤",
+    "Compiling menu...⚙️",
+    "Displaying menu now...✅",
+    "Waking up the bot...😴",
+    "Brewing some coffee...☕",
+    "Checking for updates...🔄",
+    "Loading all modules...📦",
+    "Unleashing the menu...💥",
+    "Accessing mainframe...💻",
+    "Decrypting command protocols...🛡️",
+    "Calibrating response time...⚡",
+    "Generating menu interface...🎨",
+    "Welcome, user...👋"
     ];
 
     // --- NEW: Select one random message from the array ---
@@ -41,7 +58,7 @@ const menu = async (m, sock) => {
 
     const menuText = `
 ╭───────────────⭓
-│ 🤖 ʙᴏᴛ : *xᴇᴏɴ-xᴛᴇᴄʜ 😂*
+│ 🤖 ʙᴏᴛ : *🌐 xᴇᴏɴ-xᴛᴇᴄʜ 🌐*
 │ ⏱️ ʀᴜɴᴛɪᴍᴇ : ${uptime}
 │ ⚡ sᴘᴇᴇᴅ : ${responseTime}s
 │ 🌐 ᴍᴏᴅᴇ : ${config.MODE}
@@ -51,7 +68,7 @@ const menu = async (m, sock) => {
 │ 🧬 ᴠᴇʀꜱɪᴏɴ : *4.1.0*
 ╰───────────────⭓
 ════════════════════
-${randomFancyMessage}
+> ${randomFancyMessage}
 ════════════════════
 > *✨Explore the commands below to harness the bot's full power!✨*
 ════════════════════
@@ -90,9 +107,7 @@ ${randomFancyMessage}
 │ ⬡ ${prefix}delete
 │ ⬡ ${prefix}antidelete
 │ ⬡ ${prefix}antisticker
-│ ⬡ ${prefix}autobio
 │ ⬡ ${prefix}autoread
-│ ⬡ ${prefix}autoreact
 │ ⬡ ${prefix}autostatusview
 │ ⬡ ${prefix}autotyping
 │ ⬡ ${prefix}autoblock
@@ -100,7 +115,6 @@ ${randomFancyMessage}
 │ ⬡ ${prefix}autosticker
 │ ⬡ ${prefix}setprefix
 │ ⬡ ${prefix}alwaysonline
-│ ⬡ ${prefix}blockunknown
 │ ⬡ ${prefix}setownername
 │ ⬡ ${prefix}setstatusmsg
 ╰──────────────────⭓
@@ -123,18 +137,8 @@ ${randomFancyMessage}
 │ ⬡ ${prefix}mp3
 │ ⬡ ${prefix}ss
 │ ⬡ ${prefix}url
-│ ⬡ ${prefix}tomp3
-│ ⬡ ${prefix}toqr
-│ ⬡ ${prefix}trt
-│ ⬡ ${prefix}mp3
-│ ⬡ ${prefix}readqr
-│ ⬡ ${prefix}removebg
-│ ⬡ ${prefix}givetext
-│ ⬡ ${prefix}extract
-│ ⬡ ${prefix}geturl
 │ ⬡ ${prefix}attp
 │ ⬡ ${prefix}fancy
-│ ⬡ ${prefix}image
 │ ⬡ ${prefix}gimage
 │ ⬡ ${prefix}shorten
 │ ⬡ ${prefix}sticker
@@ -144,27 +148,16 @@ ${randomFancyMessage}
 > 🔍  *𝗦𝗘𝗔𝗥𝗖𝗛 𝗠𝗘𝗡𝗨* 🔍
 ════════════════════
 ╭───────────────⭓
-│ ⬡ ${prefix}apk 
+│ ⬡ ${prefix}app
 │ ⬡ ${prefix}bing
 │ ⬡ ${prefix}ipstalk
-│ ⬡ ${prefix}movie
+│ ⬡ ${prefix}imdb
 │ ⬡ ${prefix}google
-│ ⬡ ${prefix}yts
-│ ⬡ ${prefix}bible
-│ ⬡ ${prefix}play
-│ ⬡ ${prefix}play2
+│ ⬡ ${prefix}ytsearch
 │ ⬡ ${prefix}mediafire
-│ ⬡ ${prefix}quranvid
+│ ⬡ ${prefix}quranvideo
 │ ⬡ ${prefix}quraimage
-│ ⬡ ${prefix}surahurdu
-│ ⬡ ${prefix}surahaudio
-│ ⬡ ${prefix}asmaulhusna
-│ ⬡ ${prefix}prophetname
 │ ⬡ ${prefix}facebook
-│ ⬡ ${prefix}fb
-│ ⬡ ${prefix}fbdl
-│ ⬡ ${prefix}ig
-│ ⬡ ${prefix}insta
 │ ⬡ ${prefix}instagram
 │ ⬡ ${prefix}tiktok
 │ ⬡ ${prefix}lyrics
@@ -183,27 +176,27 @@ ${randomFancyMessage}
 │ ⬡ ${prefix}avatar
 │ ⬡ ${prefix}wcg
 │ ⬡ ${prefix}joke
-│ ⬡ ${prefix}tts
+│ ⬡ ${prefix}ttt
+│ ⬡ ${prefix}yesorno
 │ ⬡ ${prefix}connect4
-│ ⬡ ${prefix}tictactoe
 │ ⬡ ${prefix}rank
-│ ⬡ ${prefix}quiz
+│ ⬡ ${prefix}quizz
 │ ⬡ ${prefix}movie
+│ ⬡ ${prefix}flirt
 │ ⬡ ${prefix}givetext
 │ ⬡ ${prefix}roast
 │ ⬡ ${prefix}anime
 │ ⬡ ${prefix}profile
-│ ⬡ ${prefix}ebinar
-│ ⬡ ${prefix}fancy
+│ ⬡ ${prefix}ebinary
 │ ⬡ ${prefix}fetch
 │ ⬡ ${prefix}qc
 │ ⬡ ${prefix}couple
 │ ⬡ ${prefix}poll
-│ ⬡ ${prefix}location 
-│ ⬡ ${prefix}mylocation
+│ ⬡ ${prefix}couple
 │ ⬡ ${prefix}emojimix
 │ ⬡ ${prefix}score
 │ ⬡ ${prefix}toqr
+│ ⬡ ${prefix}ebinary
 │ ⬡ ${prefix}tempmail
 ╰──────────────────⭓
 ════════════════════
@@ -220,25 +213,19 @@ ${randomFancyMessage}
 │ ⬡ ${prefix}group open
 │ ⬡ ${prefix}add
 │ ⬡ ${prefix}vcf
-│ ⬡ ${prefix}jid
 │ ⬡ ${prefix}left
-│ ⬡ ${prefix}join
-│ ⬡ ${prefix}welcome
-│ ⬡ ${prefix}promote 
-│ ⬡ ${prefix}demote
 │ ⬡ ${prefix}promoteall
 │ ⬡ ${prefix}demoteall
-│ ⬡ ${prefix}setgroupname
 │ ⬡ ${prefix}setdescription
 │ ⬡ ${prefix}linkgc
+│ ⬡ ${prefix}antilink2
 │ ⬡ ${prefix}antilink
-│ ⬡ ${prefix}antibot
-│ ⬡ ${prefix}antibugs
 │ ⬡ ${prefix}antisticker
 │ ⬡ ${prefix}antispam
 │ ⬡ ${prefix}create
 │ ⬡ ${prefix}setname
-│ ⬡ ${prefix}ginfo
+│ ⬡ ${prefix}promote
+│ ⬡ ${prefix}demote
 │ ⬡ ${prefix}groupinfo
 │ ⬡ ${prefix}balance
 ╰──────────────────⭓
@@ -250,8 +237,6 @@ ${randomFancyMessage}
 │ ⬡ ${prefix}trap
 │ ⬡ ${prefix}hwaifu
 │ ⬡ ${prefix}hentai
-│ ⬡ ${prefix}hentavid 
-│ ⬡ ${prefix}xxxvideo
 ╰──────────────────⭓
 ════════════════════
 > 🎧 *𝗔𝗨𝗗𝗜𝗢 𝗘𝗙𝗙𝗘𝗖𝗧𝗦* 🎧
@@ -305,6 +290,17 @@ ${randomFancyMessage}
 │ ⬡ ${prefix}hug
 ╰──────────────────⭓
 ════════════════════
+> ⛔  *𝗕𝗨𝗚 𝗠𝗘𝗡𝗨* ⛔
+════════════════════
+╭───────────────⭓
+│ ⬡ ${prefix}ios-kill
+│ ⬡ ${prefix}xeon-kill
+│ ⬡ ${prefix}xeon-blast
+│ ⬡ ${prefix}xeon-freeze
+│ ⬡ ${prefix}black-tappy
+│ ⬡ ${prefix}blacktappy-kill
+╰──────────────────⭓
+════════════════════
 🔧 *Wᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ᴍᴇɴᴜ!*
 *ᴡᴀɪᴛ ғᴏʀ ᴍᴏʀᴇ ᴄᴏᴍᴍᴀɴᴅs...*
 ════════════════════
@@ -329,10 +325,10 @@ ${randomFancyMessage}
 
     // 🎵 blacktappy  random songs
     const songUrls = [
-      'https://files.catbox.moe/k41qij.mp3',
-      'https://files.catbox.moe/mexjrq.mp3',
-      'https://files.catbox.moe/ddmjyy.mp3',
-      'https://files.catbox.moe/4yqp5m.mp3'  
+      'https://files.catbox.moe/2b33jv.mp3',
+      'https://files.catbox.moe/0cbqfa.mp3',
+      'https://files.catbox.moe/j4ids2.mp3',
+      'https://files.catbox.moe/vv2qla.mp3'  
     ];
     const random = songUrls[Math.floor(Math.random() * songUrls.length)];
 
