@@ -19,13 +19,13 @@ const ownerContact = async (m, sock) => {
     const newsletterName = '𝐗ҽσɳ-𝐗ƚҽƈ𝐡';
 
     // 🔥 Your custom image URL
-    const profilePictureUrl = 'https://files.catbox.moe/0kca70.jpg'; // replace this with your real image link
+    const profilePictureUrl = 'https://files.catbox.moe/8k0enh.jpg'; // replace this with your real image link
 
     const captionText = `
-╭───〔 ▶️ *BOT OWNER* ◀️ 〕───⬣
+╭─〔 ▶️ *BOT OWNER* ◀️ 〕─⬣
 ┃ 👤 *Name:* ${config.OWNER_NAME || 'Black-Tappy'}
 ┃ 📞 *Contact:* wa.me/${ownerNumber}
-┃ 🟢 *GitHub:* github.com/${config.GITHUB || 'XEON-XTECH'}
+┃ 🟢 *GitHub:* github.com/${config.GITHUB || 'Black-Tappy'}
 ╰──────────────⬣`.trim();
 
     await sock.sendMessage(
