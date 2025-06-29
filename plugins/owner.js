@@ -47,7 +47,7 @@ const ownerContact = async (m, sock) => {
 
     const vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:${config.OWNER_NAME || 'Popkid'}
+FN:${config.OWNER_NAME || 'Black-Tappy'}
 TEL;type=CELL;type=VOICE;waid=${ownerNumber}:${ownerNumber}
 END:VCARD`;
 
