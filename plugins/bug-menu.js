@@ -10,23 +10,6 @@ const formatRuntime = (ms) => {
   return `${hours}h ${minutes}m ${seconds}s`;
 };
 
-// Array of random audio files
-const audioArray = [
-  'https://files.catbox.moe/ucmkut.mp3',
-  'https://files.catbox.moe/ucmkut.mp3',
-  'https://files.catbox.moe/ucmkut.mp3',
-];
-
-// Array of random scary messages
-const scaryMessages = [
-  "👻 Beware! The shadows are watching you...",
-  "😱 Did you hear that? Something lurks in the dark...",
-  "💀 Don't turn around... you might not like what you see!",
-  "🕷️ Something is crawling into your chats...",
-];
-
-const getRandomElement = (array) => array[Math.floor(Math.random() * array.length)];
-
 const bugMenu = async (m, sock) => {
   const prefix = config.PREFIX;
   const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
@@ -42,9 +25,6 @@ const bugMenu = async (m, sock) => {
     } catch (e) {
       console.error("Failed to fetch profile picture:", e);
     }
-
-    const randomAudio = getRandomElement(audioArray);
-    const randomScaryMessage = getRandomElement(scaryMessages);
 
     const text = `
 ╭───────────────────⭓
@@ -62,13 +42,12 @@ const bugMenu = async (m, sock) => {
 ─────────────────────
 ⚡𝗫𝗘𝗢𝗡 𝗫𝗧𝗘𝗖𝗛 𝗕𝗨𝗚 𝗠𝗘𝗡𝗨⚡
 ─────────────────────
-${randomScaryMessage}
 `;
 
     await sock.sendMessage(
       m.from,
       {
-        audio: { url: randomAudio },
+        image: { url: profilePictureUrl },
         caption: text.trim(),
         contextInfo: {
           forwardingScore: 5,
