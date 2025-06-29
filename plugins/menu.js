@@ -3,42 +3,75 @@ import config from '../../config.cjs';
 const menu = async (m, sock) => {
   const prefix = config.PREFIX;
   const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
-  const text = m.body.slice(prefix.length + cmd.length).trim();
 
   if (cmd === "menu") {
+    // --- STEP 1: GATHER DATA & CALCULATIONS ---
     const start = new Date().getTime();
-    await m.React('✨');
-    const end = new Date().getTime();
-    const responseTime = ((end - start) / 1000).toFixed(2);
+    await m.React('🎀');
 
+    // Calculate Uptime
     const uptimeSeconds = process.uptime();
     const hours = Math.floor(uptimeSeconds / 3600);
     const minutes = Math.floor((uptimeSeconds % 3600) / 60);
     const seconds = Math.floor(uptimeSeconds % 60);
     const uptime = `${hours}h ${minutes}m ${seconds}s`;
 
-    let profilePictureUrl = 'https://i.ibb.co/7yzjwvJ/default.jpg'; 
+    // --- VALIDATED: Determine Bot Mode ---
+    // Reads the mode from your config file and displays it correctly.
+    const botMode = config.MODE && config.MODE.toLowerCase() === 'public' ? 'Public' : 'Private';
+
+    // Fetch Profile Picture with a fallback
+    let profilePictureUrl = 'https://files.catbox.moe/og4tsk.jpg'; // Default image URL
     try {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 1500); 
-      const pp = await sock.profilePictureUrl(m.sender, 'image', { signal: controller.signal });
-      clearTimeout(timeout);
+      const pp = await sock.profilePictureUrl(m.sender, 'image');
       if (pp) profilePictureUrl = pp;
     } catch (error) {
-      console.log('🖼️ Profile pic fetch timed out or failed.');
+      console.error("Failed to fetch profile picture, using default.", error);
     }
 
+    // Array of random "fancy" loading messages
+    const fancyMessages = [
+      "Initializing connection...🌐",
+      "Establishing Bot commands...📂",
+      "Verifying credentials...😂",
+      "Connecting to WhatsApp API...🗝️",
+      "Preparing menu...🆔",
+      "Redirecting to commands...📜",
+      "Connecting to servers...🛰️",
+      "Fetching command list...📝",
+      "Authenticating user...👤",
+      "Compiling menu...⚙️",
+      "Displaying menu now...✅",
+      "Waking up the bot...😴",
+      "Brewing some coffee...☕",
+      "Checking for updates...🔄",
+      "Loading all modules...📦",
+      "Unleashing the menu...💥",
+      "Accessing mainframe...💻",
+      "Decrypting command protocols...🛡️",
+      "Calibrating response time...⚡",
+      "Generating menu interface...🎨",
+      "Welcome, user...👋"
+    ];
+    const randomFancyMessage = fancyMessages[Math.floor(Math.random() * fancyMessages.length)];
+
+    const end = new Date().getTime();
+    const responseTime = ((end - start) / 1000).toFixed(2); // More accurate speed calculation
+
+    // --- STEP 2: CONSTRUCT THE MENU TEXT ---
     const menuText = `
 ╭───────────────⭓
 │ 🤖 ʙᴏᴛ : *🌐 xᴇᴏɴ-xᴛᴇᴄʜ 🌐*
 │ ⏱️ ʀᴜɴᴛɪᴍᴇ : ${uptime}
 │ ⚡ sᴘᴇᴇᴅ : ${responseTime}s
-│ 🌐 ᴍᴏᴅᴇ : *Unknown Identify🕵️*
+│ 🌐 ᴍᴏᴅᴇ : *${botMode}*
 │ 🧩 ᴘʀᴇғɪx : ${prefix}
 │ 👑 ᴏᴡɴᴇʀ : ʙʟᴀᴄᴋ-ᴛᴀᴘᴘʏ
 │ 🛠️ ᴅᴇᴠ : *ʙʟᴀᴄᴋ-ᴛᴀᴘᴘʏ*
 │ 🧬 ᴠᴇʀꜱɪᴏɴ : *4.1.0*
 ╰───────────────⭓
+════════════════════
+> ${randomFancyMessage}
 ════════════════════
 > *✨Explore the commands below to harness the bot's full power!✨*
 ════════════════════
@@ -274,38 +307,39 @@ const menu = async (m, sock) => {
 🔧 *Wᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ᴍᴇɴᴜ!*
 *ᴡᴀɪᴛ ғᴏʀ ᴍᴏʀᴇ ᴄᴏᴍᴍᴀɴᴅs...*
 ════════════════════
-> 📢 *ᴅᴇᴠ ʙʟᴀᴄᴋ-ᴛᴀᴘᴘʏ
-    `.trim();
+> 📢 *ᴅᴇᴠ ʙʟᴀᴄᴋ-ᴛᴀᴘᴘʏ*
+`.trim();
 
+    // --- STEP 3: SEND THE MESSAGES ---
     const newsletterContext = {
       forwardingScore: 999,
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
         newsletterName: "𝐗ҽσɳ-𝐗ƚҽƈ𝐡",
-        newsletterJid: "120363369453603973@newsletter"
-      }
+        newsletterJid: "120363369453603973@newsletter",
+      },
     };
 
-    // menu image message
+    // Send the main menu with image and caption
     await sock.sendMessage(m.from, {
       image: { url: profilePictureUrl },
       caption: menuText,
       contextInfo: newsletterContext
     }, { quoted: m });
 
-    // 🎵 popkid random songs
+    // Send a random audio file
     const songUrls = [
       'https://files.catbox.moe/2b33jv.mp3',
       'https://files.catbox.moe/0cbqfa.mp3',
       'https://files.catbox.moe/j4ids2.mp3',
-      'https://files.catbox.moe/vv2qla.mp3'  
+      'https://files.catbox.moe/vv2qla.mp3'
     ];
-    const random = songUrls[Math.floor(Math.random() * songUrls.length)];
+    const randomSong = songUrls[Math.floor(Math.random() * songUrls.length)];
 
     await sock.sendMessage(m.from, {
-      audio: { url: random },
+      audio: { url: randomSong },
       mimetype: 'audio/mpeg',
-      ptt: false,
+      ptt: false, // false for a music file, true for a voice note
       contextInfo: newsletterContext
     }, { quoted: m });
   }

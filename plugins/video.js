@@ -24,13 +24,13 @@ const videoCommand = async (_0x3d50be, _0xc2eee) => {
     });
   }
   if (typeof _0x3d50be.React === "function") {
-    await _0x3d50be.React('🎧');
+    await _0x3d50be.React('🔍');
   }
   try {
     const _0x25f413 = await _0x16850f(_0xdfa127);
     const _0x285b1c = _0x25f413.videos?.[0x0];
     if (!_0x285b1c) {
-      throw new Error("🔴 No video found");
+      throw new Error("No video found");
     }
     let _0x4492f1;
     try {
@@ -40,10 +40,10 @@ const videoCommand = async (_0x3d50be, _0xc2eee) => {
         throw new Error("Primary failed");
       }
       _0x4492f1 = {
-        '📸 title': _0x25a2f6.title,
-        '🔗 thumbnail': _0x25a2f6.thumbnail,
-        '📥 download_url': _0x25a2f6.download_url,
-        '📂 quality': _0x25a2f6.quality || "Unknown"
+        'title': _0x25a2f6.title,
+        'thumbnail': _0x25a2f6.thumbnail,
+        'download_url': _0x25a2f6.download_url,
+        'quality': _0x25a2f6.quality || "Unknown"
       };
     } catch {
       const _0x4404ef = await _0x4f4f24.get("https://iamtkm.vercel.app/downloaders/ytmp4?url=" + encodeURIComponent(_0x285b1c.url));
@@ -52,10 +52,10 @@ const videoCommand = async (_0x3d50be, _0xc2eee) => {
         throw new Error("Fallback failed");
       }
       _0x4492f1 = {
-        '📸 title': _0x234bf6.title || _0x285b1c.title,
-        '🔗 thumbnail': _0x285b1c.thumbnail,
-        '📥 download_url': _0x234bf6.url,
-        '📂 quality': "Unknown (fallback)"
+        'title': _0x234bf6.title || _0x285b1c.title,
+        'thumbnail': _0x285b1c.thumbnail,
+        'download_url': _0x234bf6.url,
+        'quality': "Unknown (fallback)"
       };
     }
     const _0x574fa2 = {
@@ -67,7 +67,7 @@ const videoCommand = async (_0x3d50be, _0xc2eee) => {
         'forwardingScore': 0x5,
         'isForwarded': true,
         'externalAdReply': {
-          'title': "𝐗ҽσɳ-𝐗ƚҽƈ𝐡 𝐕ɪժҽօ",
+          'title': "xᴇᴏɴ-xᴛᴇᴄʜ ᴠɪᴅᴇᴏ",
           'body': "Streaming via Xeon-Xtech Bot",
           'thumbnailUrl': 'https://files.catbox.moe/8k0enh.jpg',
           'sourceUrl': _0x285b1c.url,
@@ -102,8 +102,8 @@ const videoCommand = async (_0x3d50be, _0xc2eee) => {
           'renderLargerThumbnail': true
         },
         'forwardedNewsletterMessageInfo': {
-          'newsletterJid': "120363420342566562@newsletter",
-          'newsletterName': "Popkid-Gle",
+          'newsletterJid': "120363369453603973@newsletter",
+          'newsletterName': "𝐗ҽσɳ-𝐗ƚҽƈ𝐡",
           'serverMessageId': -0x1
         }
       }
@@ -117,7 +117,7 @@ const videoCommand = async (_0x3d50be, _0xc2eee) => {
   } catch (_0x15a935) {
     console.error(_0x15a935);
     await _0xc2eee.sendMessage(_0x3d50be.from, {
-      'text': "❌ An unexpected error occurred! Try again later.",
+      'text': "🔴 An unexpected error occurred! Try again later.",
       'contextInfo': {
         'forwardingScore': 0x5,
         'isForwarded': true,
