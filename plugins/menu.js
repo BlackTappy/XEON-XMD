@@ -1,59 +1,74 @@
 import config from '../../config.cjs';
-import moment from 'moment-timezone'; // Import moment-timezone for uptime calculation
 
 const menu = async (m, sock) => {
   const prefix = config.PREFIX;
   const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
-  // No need for 'text' if not used later in this function
-  // const text = m.body.slice(prefix.length + cmd.length).trim(); 
 
   if (cmd === "menu") {
+    // --- STEP 1: GATHER DATA & CALCULATIONS ---
     const start = new Date().getTime();
     await m.React('🎀');
-    const end = new Date().getTime();
-    const responseTime = ((end - start) / 1000).toFixed(2); // Format to 2 decimal places
 
+    // Calculate Uptime
+    const uptimeSeconds = process.uptime();
+    const hours = Math.floor(uptimeSeconds / 3600);
+    const minutes = Math.floor((uptimeSeconds % 3600) / 60);
+    const seconds = Math.floor(uptimeSeconds % 60);
+    const uptime = `${hours}h ${minutes}m ${seconds}s`;
+
+    // --- VALIDATED: Determine Bot Mode ---
+    // Reads the mode from your config file and displays it correctly.
+    const botMode = config.MODE && config.MODE.toLowerCase() === 'public' ? 'Public' : 'Private';
+
+    // Fetch Profile Picture with a fallback
     let profilePictureUrl = 'https://files.catbox.moe/og4tsk.jpg'; // Default image URL
     try {
       const pp = await sock.profilePictureUrl(m.sender, 'image');
-      if (pp) {
-        profilePictureUrl = pp;
-      }
+      if (pp) profilePictureUrl = pp;
     } catch (error) {
-      console.error("Failed to fetch profile picture:", error);
-      // Use the default image if fetching fails, as already handled
+      console.error("Failed to fetch profile picture, using default.", error);
     }
 
-    // --- Dynamic values for menu ---
-    // Bot uptime
-    const uptimeMilliseconds = process.uptime() * 1000;
-    const uptime = moment.duration(uptimeMilliseconds).humanize();
-
-    // Bot mode
-    const botMode = config.MODE === "public" ? "Public" : "Private";
-
-    // Random fancy message (you need to define randomFancyMessage elsewhere or inline it)
-    // For demonstration, let's define a simple array here.
+    // Array of random "fancy" loading messages
     const fancyMessages = [
-      "✨ Your ultimate companion for seamless WhatsApp experience!",
-      "🚀 Powering up your chats with incredible features!",
-      "🌟 Discover a world of commands at your fingertips!",
-      "🤖 Ready to assist you with a tap!",
-      "💡 Innovation, right in your chat!"
+      "Initializing connection...🌐",
+      "Establishing Bot commands...📂",
+      "Verifying credentials...😂",
+      "Connecting to WhatsApp API...🗝️",
+      "Preparing menu...🆔",
+      "Redirecting to commands...📜",
+      "Connecting to servers...🛰️",
+      "Fetching command list...📝",
+      "Authenticating user...👤",
+      "Compiling menu...⚙️",
+      "Displaying menu now...✅",
+      "Waking up the bot...😴",
+      "Brewing some coffee...☕",
+      "Checking for updates...🔄",
+      "Loading all modules...📦",
+      "Unleashing the menu...💥",
+      "Accessing mainframe...💻",
+      "Decrypting command protocols...🛡️",
+      "Calibrating response time...⚡",
+      "Generating menu interface...🎨",
+      "Welcome, user...👋"
     ];
     const randomFancyMessage = fancyMessages[Math.floor(Math.random() * fancyMessages.length)];
-    // --- End dynamic values ---
 
+    const end = new Date().getTime();
+    const responseTime = ((end - start) / 1000).toFixed(2); // More accurate speed calculation
+
+    // --- STEP 2: CONSTRUCT THE MENU TEXT ---
     const menuText = `
 ╭───────────────⭓
-│ 🤖 ʙᴏᴛ : *🌐 XEON-XTECH 🌐*
+│ 🤖 ʙᴏᴛ : *🌐 xᴇᴏɴ-xᴛᴇᴄʜ 🌐*
 │ ⏱️ ʀᴜɴᴛɪᴍᴇ : ${uptime}
 │ ⚡ sᴘᴇᴇᴅ : ${responseTime}s
 │ 🌐 ᴍᴏᴅᴇ : *${botMode}*
 │ 🧩 ᴘʀᴇғɪx : ${prefix}
-│ 👑 ᴏᴡɴᴇʀ : ${config.OWNER_NAME || 'Blacl-Tappy'}
-│ 🛠️ ᴅᴇᴠ : *Black-Tappy*
-│ 🧬 ᴠᴇʀꜱɪᴏɴ : *${config.BOT_VERSION || '4.1.0'}*
+│ 👑 ᴏᴡɴᴇʀ : ʙʟᴀᴄᴋ-ᴛᴀᴘᴘʏ
+│ 🛠️ ᴅᴇᴠ : *ʙʟᴀᴄᴋ-ᴛᴀᴘᴘʏ*
+│ 🧬 ᴠᴇʀꜱɪᴏɴ : *4.1.0*
 ╰───────────────⭓
 ════════════════════
 > ${randomFancyMessage}
@@ -293,19 +308,39 @@ const menu = async (m, sock) => {
 *ᴡᴀɪᴛ ғᴏʀ ᴍᴏʀᴇ ᴄᴏᴍᴍᴀɴᴅs...*
 ════════════════════
 > 📢 *ᴅᴇᴠ ʙʟᴀᴄᴋ-ᴛᴀᴘᴘʏ*
-`;
+`.trim();
 
+    // --- STEP 3: SEND THE MESSAGES ---
+    const newsletterContext = {
+      forwardingScore: 999,
+      isForwarded: true,
+      forwardedNewsletterMessageInfo: {
+        newsletterName: "𝐗ҽσɳ-𝐗ƚҽƈ𝐡",
+        newsletterJid: "120363369453603973@newsletter",
+      },
+    };
+
+    // Send the main menu with image and caption
     await sock.sendMessage(m.from, {
       image: { url: profilePictureUrl },
-      caption: menuText.trim(),
-      contextInfo: {
-        forwardingScore: 5,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterName: "𝐗ҽσɳ-𝐗ƚҽƈ𝐡",
-          newsletterJid: "120363369453603973@newsletter",
-        },
-      }
+      caption: menuText,
+      contextInfo: newsletterContext
+    }, { quoted: m });
+
+    // Send a random audio file
+    const songUrls = [
+      'https://files.catbox.moe/2b33jv.mp3',
+      'https://files.catbox.moe/0cbqfa.mp3',
+      'https://files.catbox.moe/j4ids2.mp3',
+      'https://files.catbox.moe/vv2qla.mp3'
+    ];
+    const randomSong = songUrls[Math.floor(Math.random() * songUrls.length)];
+
+    await sock.sendMessage(m.from, {
+      audio: { url: randomSong },
+      mimetype: 'audio/mpeg',
+      ptt: false, // false for a music file, true for a voice note
+      contextInfo: newsletterContext
     }, { quoted: m });
   }
 };

@@ -1,1 +1,73 @@
-(function(_0x555131,_0x5af2b6){const _0x430721=_0x1f1b,_0x1ffdec=_0x555131();while(!![]){try{const _0x3c48f4=-parseInt(_0x430721(0x166))/0x1*(parseInt(_0x430721(0x15d))/0x2)+-parseInt(_0x430721(0x151))/0x3+parseInt(_0x430721(0x152))/0x4+-parseInt(_0x430721(0x159))/0x5+parseInt(_0x430721(0x164))/0x6*(parseInt(_0x430721(0x175))/0x7)+parseInt(_0x430721(0x170))/0x8+parseInt(_0x430721(0x14c))/0x9;if(_0x3c48f4===_0x5af2b6)break;else _0x1ffdec['push'](_0x1ffdec['shift']());}catch(_0x5480d8){_0x1ffdec['push'](_0x1ffdec['shift']());}}}(_0x3180,0xdcc7a));function _0x3180(){const _0x56d9a4=['Hmm,\x20couldn\x27t\x20find\x20that\x20tune.\x20😔\x20Maybe\x20try\x20again?','headers','🎀\x20Xeon\x20Xtech\x20Music\x20Box\x20🎀','\x22...','6322505JkMhID','status','⚠️\x20Couldn\x27t\x20grab\x20the\x20audio.\x20Let\x27s\x20try\x20later!\x20😔','split','4JaBgma','error','reply','play','https://api.agatz.xyz/api/ytsearch?message=','from','GET','72eJVAGU','json','7302QyjGdt','.mp3','sendMessage','https://api.nexoracle.com/downloader/yt-audio2?apikey=free_key@maher_apis&url=','https://files.catbox.moe/og4tsk.jpg','body','🎧\x20Now\x20playing:\x20','data','slice','title','3751880ncrQBc','audio/mpeg','length','\x20🎧','thumbnail','532280HaoCyv','120363290715861418@newsletter','17139654cryGhQ','HTTP\x20error!\x20status:\x20','PREFIX','🔎\x20Finding\x20\x22','.mp3\x20audio\x20delivered','5179929tUzRTs','2496764LtjXWr','application/json','result'];_0x3180=function(){return _0x56d9a4;};return _0x3180();}import _0x54865f from'../../config.cjs';import _0x2097b3 from'node-fetch';async function fetchJson(_0x15f3ac,_0x124ff3={}){const _0x3e1b6e=_0x1f1b,_0x32d0fb=await _0x2097b3(_0x15f3ac,{'method':_0x3e1b6e(0x163),'headers':{'Content-Type':_0x3e1b6e(0x153),..._0x124ff3[_0x3e1b6e(0x156)]},..._0x124ff3});if(!_0x32d0fb['ok'])throw new Error(_0x3e1b6e(0x14d)+_0x32d0fb[_0x3e1b6e(0x15a)]);return await _0x32d0fb[_0x3e1b6e(0x165)]();}function _0x1f1b(_0x10cb68,_0x228b9c){const _0x318043=_0x3180();return _0x1f1b=function(_0x1f1b33,_0x20f1c8){_0x1f1b33=_0x1f1b33-0x14c;let _0x3c5757=_0x318043[_0x1f1b33];return _0x3c5757;},_0x1f1b(_0x10cb68,_0x228b9c);}const play=async(_0x4ae649,_0x15b006)=>{const _0x2c2976=_0x1f1b,_0x381362=_0x54865f[_0x2c2976(0x14e)],_0x5aa761=_0x4ae649[_0x2c2976(0x16b)]['startsWith'](_0x381362)?_0x4ae649[_0x2c2976(0x16b)][_0x2c2976(0x16e)](_0x381362[_0x2c2976(0x172)])[_0x2c2976(0x15c)]('\x20')[0x0]['toLowerCase']():'',_0x13b03a=_0x4ae649[_0x2c2976(0x16b)][_0x2c2976(0x16e)](_0x381362[_0x2c2976(0x172)]+_0x5aa761[_0x2c2976(0x172)])['trim']();if(_0x5aa761===_0x2c2976(0x160)){if(!_0x13b03a)return _0x4ae649['reply']('🎶\x20Tell\x20me\x20the\x20song\x20you\x27re\x20in\x20the\x20mood\x20for!\x20🎶');try{await _0x15b006[_0x2c2976(0x168)](_0x4ae649[_0x2c2976(0x162)],{'text':_0x2c2976(0x14f)+_0x13b03a+_0x2c2976(0x158)},{'quoted':_0x4ae649});let _0x475888=await fetchJson(_0x2c2976(0x161)+encodeURIComponent(_0x13b03a)),_0x4c70d6=_0x475888[_0x2c2976(0x16d)][0x0];if(!_0x4c70d6)return _0x4ae649[_0x2c2976(0x15f)](_0x2c2976(0x155));let _0x1ad9ca=await fetchJson(_0x2c2976(0x169)+_0x4c70d6['url']),_0x20d5d2=_0x1ad9ca[_0x2c2976(0x154)]['audio'];if(!_0x20d5d2)return _0x4ae649[_0x2c2976(0x15f)](_0x2c2976(0x15b));await _0x15b006[_0x2c2976(0x168)](_0x4ae649[_0x2c2976(0x162)],{'audio':{'url':_0x20d5d2},'fileName':_0x4c70d6[_0x2c2976(0x16f)]+_0x2c2976(0x167),'mimetype':_0x2c2976(0x171),'contextInfo':{'forwardingScore':0x5,'isForwarded':!![],'forwardedNewsletterMessageInfo':{'newsletterName':_0x2c2976(0x157),'newsletterJid':_0x2c2976(0x176)},'externalAdReply':{'title':_0x2c2976(0x16c)+_0x4c70d6[_0x2c2976(0x16f)]+_0x2c2976(0x173),'body':_0x2c2976(0x150),'thumbnailUrl':_0x4c70d6[_0x2c2976(0x174)]||_0x2c2976(0x16a),'mediaType':0x1,'renderLargerThumbnail':!![],'thumbnailHeight':0x1f4,'thumbnailWidth':0x1f4}}},{'quoted':_0x4ae649});}catch(_0x46f490){console[_0x2c2976(0x15e)]('Error\x20in\x20play\x20command:',_0x46f490),_0x4ae649[_0x2c2976(0x15f)]('Hmm,\x20something\x20went\x20wrong.\x20😅\x20Let\x27s\x20try\x20again!');}}};export default play;
+import _0x54865f from '../../config.cjs';
+import _0x2097b3 from 'node-fetch';
+async function fetchJson(_0x15f3ac, _0x124ff3 = {}) {
+  const _0x32d0fb = await _0x2097b3(_0x15f3ac, {
+    'method': "GET",
+    'headers': {
+      'Content-Type': "application/json",
+      ..._0x124ff3.headers
+    },
+    ..._0x124ff3
+  });
+  if (!_0x32d0fb.ok) {
+    throw new Error("HTTP error! status: " + _0x32d0fb.status);
+  }
+  return await _0x32d0fb.json();
+}
+const play = async (_0x4ae649, _0x15b006) => {
+  const _0x381362 = _0x54865f.PREFIX;
+  const _0x5aa761 = _0x4ae649.body.startsWith(_0x381362) ? _0x4ae649.body.slice(_0x381362.length).split(" ")[0x0].toLowerCase() : '';
+  const _0x13b03a = _0x4ae649.body.slice(_0x381362.length + _0x5aa761.length).trim();
+  if (_0x5aa761 === "play") {
+    if (!_0x13b03a) {
+      return _0x4ae649.reply("🎶 Tell me the song you're in the mood for! 🎶");
+    }
+    try {
+      await _0x15b006.sendMessage(_0x4ae649.from, {
+        'text': "🔎 Finding \"" + _0x13b03a + "\"..."
+      }, {
+        'quoted': _0x4ae649
+      });
+      let _0x475888 = await fetchJson("https://api.agatz.xyz/api/ytsearch?message=" + encodeURIComponent(_0x13b03a));
+      let _0x4c70d6 = _0x475888.data[0x0];
+      if (!_0x4c70d6) {
+        return _0x4ae649.reply("Hmm, couldn't find that tune. 😔 Maybe try again?");
+      }
+      let _0x1ad9ca = await fetchJson("https://api.vreden.my.id/api/ytplaymp3?query=" + _0x4c70d6.url);
+      let _0x20d5d2 = _0x1ad9ca.result.audio;
+      if (!_0x20d5d2) {
+        return _0x4ae649.reply("⚠️ Couldn't grab the audio. Let's try later! 😔");
+      }
+      await _0x15b006.sendMessage(_0x4ae649.from, {
+        'audio': {
+          'url': _0x20d5d2
+        },
+        'fileName': _0x4c70d6.title + ".mp3",
+        'mimetype': "audio/mpeg",
+        'contextInfo': {
+          'forwardingScore': 0x5,
+          'isForwarded': true,
+          'forwardedNewsletterMessageInfo': {
+            'newsletterName': "🎀 Xeon Xtech Music Box 🎀",
+            'newsletterJid': "120363290715861418@newsletter"
+          },
+          'externalAdReply': {
+            'title': "🎧 Now playing: " + _0x4c70d6.title + " 🎧",
+            'body': ".mp3 audio delivered",
+            'thumbnailUrl': _0x4c70d6.thumbnail || "https://files.catbox.moe/og4tsk.jpg",
+            'mediaType': 0x1,
+            'renderLargerThumbnail': true,
+            'thumbnailHeight': 0x1f4,
+            'thumbnailWidth': 0x1f4
+          }
+        }
+      }, {
+        'quoted': _0x4ae649
+      });
+    } catch (_0x46f490) {
+      console.error("Error in play command:", _0x46f490);
+      _0x4ae649.reply("Hmm, something went wrong. 😅 Let's try again!");
+    }
+  }
+};
+export default play;
