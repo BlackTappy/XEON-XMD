@@ -80,11 +80,8 @@ const menu = async (m, sock) => {
 ╭───────────────⭓
 │ ⬡ ${prefix}menu
 │ ⬡ ${prefix}alive
-│ ⬡ ${prefix}sudo
-│ ⬡ ${prefix}dev
 │ ⬡ ${prefix}ping
 │ ⬡ ${prefix}owner
-│ ⬡ ${prefix}allvar
 │ ⬡ ${prefix}bugmenu
 │ ⬡ ${prefix}addpremium
 ╰──────────────────⭓
@@ -110,7 +107,9 @@ const menu = async (m, sock) => {
 │ ⬡ ${prefix}delete
 │ ⬡ ${prefix}antidelete
 │ ⬡ ${prefix}antisticker
+│ ⬡ ${prefix}autobio
 │ ⬡ ${prefix}autoread
+│ ⬡ ${prefix}autoreact
 │ ⬡ ${prefix}autostatusview
 │ ⬡ ${prefix}autotyping
 │ ⬡ ${prefix}autoblock
@@ -118,6 +117,7 @@ const menu = async (m, sock) => {
 │ ⬡ ${prefix}autosticker
 │ ⬡ ${prefix}setprefix
 │ ⬡ ${prefix}alwaysonline
+│ ⬡ ${prefix}blockunknown
 │ ⬡ ${prefix}setownername
 │ ⬡ ${prefix}setstatusmsg
 ╰──────────────────⭓
@@ -140,8 +140,18 @@ const menu = async (m, sock) => {
 │ ⬡ ${prefix}mp3
 │ ⬡ ${prefix}ss
 │ ⬡ ${prefix}url
+│ ⬡ ${prefix}tomp3
+│ ⬡ ${prefix}toqr
+│ ⬡ ${prefix}trt
+│ ⬡ ${prefix}mp3
+│ ⬡ ${prefix}readqr
+│ ⬡ ${prefix}removebg
+│ ⬡ ${prefix}givetext
+│ ⬡ ${prefix}extract
+│ ⬡ ${prefix}geturl
 │ ⬡ ${prefix}attp
 │ ⬡ ${prefix}fancy
+│ ⬡ ${prefix}image
 │ ⬡ ${prefix}gimage
 │ ⬡ ${prefix}shorten
 │ ⬡ ${prefix}sticker
@@ -151,16 +161,27 @@ const menu = async (m, sock) => {
 > 🔍  *𝗦𝗘𝗔𝗥𝗖𝗛 𝗠𝗘𝗡𝗨* 🔍
 ════════════════════
 ╭───────────────⭓
-│ ⬡ ${prefix}app
+│ ⬡ ${prefix}apk 
 │ ⬡ ${prefix}bing
 │ ⬡ ${prefix}ipstalk
-│ ⬡ ${prefix}imdb
+│ ⬡ ${prefix}movie
 │ ⬡ ${prefix}google
-│ ⬡ ${prefix}ytsearch
+│ ⬡ ${prefix}yts
+│ ⬡ ${prefix}bible
+│ ⬡ ${prefix}play
+│ ⬡ ${prefix}play2
 │ ⬡ ${prefix}mediafire
-│ ⬡ ${prefix}quranvideo
+│ ⬡ ${prefix}quranvid
 │ ⬡ ${prefix}quraimage
+│ ⬡ ${prefix}surahurdu
+│ ⬡ ${prefix}surahaudio
+│ ⬡ ${prefix}asmaulhusna
+│ ⬡ ${prefix}prophetname
 │ ⬡ ${prefix}facebook
+│ ⬡ ${prefix}fb
+│ ⬡ ${prefix}fbdl
+│ ⬡ ${prefix}ig
+│ ⬡ ${prefix}insta
 │ ⬡ ${prefix}instagram
 │ ⬡ ${prefix}tiktok
 │ ⬡ ${prefix}lyrics
@@ -179,27 +200,27 @@ const menu = async (m, sock) => {
 │ ⬡ ${prefix}avatar
 │ ⬡ ${prefix}wcg
 │ ⬡ ${prefix}joke
-│ ⬡ ${prefix}ttt
-│ ⬡ ${prefix}yesorno
+│ ⬡ ${prefix}tts
 │ ⬡ ${prefix}connect4
+│ ⬡ ${prefix}tictactoe
 │ ⬡ ${prefix}rank
-│ ⬡ ${prefix}quizz
+│ ⬡ ${prefix}quiz
 │ ⬡ ${prefix}movie
-│ ⬡ ${prefix}flirt
 │ ⬡ ${prefix}givetext
 │ ⬡ ${prefix}roast
 │ ⬡ ${prefix}anime
 │ ⬡ ${prefix}profile
-│ ⬡ ${prefix}ebinary
+│ ⬡ ${prefix}ebinar
+│ ⬡ ${prefix}fancy
 │ ⬡ ${prefix}fetch
 │ ⬡ ${prefix}qc
 │ ⬡ ${prefix}couple
 │ ⬡ ${prefix}poll
-│ ⬡ ${prefix}couple
+│ ⬡ ${prefix}location 
+│ ⬡ ${prefix}mylocation
 │ ⬡ ${prefix}emojimix
 │ ⬡ ${prefix}score
 │ ⬡ ${prefix}toqr
-│ ⬡ ${prefix}ebinary
 │ ⬡ ${prefix}tempmail
 ╰──────────────────⭓
 ════════════════════
@@ -216,19 +237,25 @@ const menu = async (m, sock) => {
 │ ⬡ ${prefix}group open
 │ ⬡ ${prefix}add
 │ ⬡ ${prefix}vcf
+│ ⬡ ${prefix}jid
 │ ⬡ ${prefix}left
+│ ⬡ ${prefix}join
+│ ⬡ ${prefix}welcome
+│ ⬡ ${prefix}promote 
+│ ⬡ ${prefix}demote
 │ ⬡ ${prefix}promoteall
 │ ⬡ ${prefix}demoteall
+│ ⬡ ${prefix}setgroupname
 │ ⬡ ${prefix}setdescription
 │ ⬡ ${prefix}linkgc
-│ ⬡ ${prefix}antilink2
 │ ⬡ ${prefix}antilink
+│ ⬡ ${prefix}antibot
+│ ⬡ ${prefix}antibugs
 │ ⬡ ${prefix}antisticker
 │ ⬡ ${prefix}antispam
 │ ⬡ ${prefix}create
 │ ⬡ ${prefix}setname
-│ ⬡ ${prefix}promote
-│ ⬡ ${prefix}demote
+│ ⬡ ${prefix}ginfo
 │ ⬡ ${prefix}groupinfo
 │ ⬡ ${prefix}balance
 ╰──────────────────⭓
@@ -240,6 +267,8 @@ const menu = async (m, sock) => {
 │ ⬡ ${prefix}trap
 │ ⬡ ${prefix}hwaifu
 │ ⬡ ${prefix}hentai
+│ ⬡ ${prefix}hentavid 
+│ ⬡ ${prefix}xxxvideo
 ╰──────────────────⭓
 ════════════════════
 > 🎧 *𝗔𝗨𝗗𝗜𝗢 𝗘𝗙𝗙𝗘𝗖𝗧𝗦* 🎧
