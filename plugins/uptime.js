@@ -39,7 +39,7 @@ const uptime = async (m, sock) => {
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363420342566562@newsletter",
+          newsletterJid: "120363369453603973@newsletter",
           newsletterName: "𝐗ҽσɳ-𝐗ƚҽƈ𝐡",
           serverMessageId: 143
         },
