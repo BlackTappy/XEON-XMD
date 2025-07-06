@@ -281,7 +281,7 @@ async function start() {
 🔗 Follow my WhatsApp Channel: ${whatsappChannelLink}`;
 
                     await Matrix.sendMessage(Matrix.user.id, {
-                        image: { url: "https://files.catbox.moe/nk71o3.jpg" },
+                        image: { url: "https://files.catbox.moe/mbnjxn.jpg" },
                         caption,
                         contextInfo: {
                             isForwarded: true,
@@ -294,7 +294,7 @@ async function start() {
                             externalAdReply: {
                                 title: "xᴇᴏɴ-xᴛᴇᴄʜ ʙᴏᴛ",
                                 body: "ᴘᴏᴡᴇʀᴇᴅ ʙʏ ʙʟᴀᴄᴋ-ᴛᴀᴘᴘʏ",
-                                thumbnailUrl: 'https://files.catbox.moe/nk71o3.jpg',
+                                thumbnailUrl: 'https://files.catbox.moe/6g5aq0.jpg',
                                 sourceUrl: whatsappChannelLink,
                                 mediaType: 1,
                                 renderLargerThumbnail: false,
