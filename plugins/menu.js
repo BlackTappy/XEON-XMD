@@ -111,6 +111,7 @@ const menu = async (m, sock) => {
 │ ⬡ ${prefix}autoread
 │ ⬡ ${prefix}autoreact
 │ ⬡ ${prefix}autostatusview
+│ ⬡ ${prefix}autostatusreact
 │ ⬡ ${prefix}autotyping
 │ ⬡ ${prefix}autoblock
 │ ⬡ ${prefix}autorecording
@@ -119,6 +120,7 @@ const menu = async (m, sock) => {
 │ ⬡ ${prefix}alwaysonline
 │ ⬡ ${prefix}blockunknown
 │ ⬡ ${prefix}setownername
+│ ⬡ ${prefix}statusreply
 │ ⬡ ${prefix}setstatusmsg
 ╰──────────────────⭓
 ════════════════════
@@ -171,6 +173,7 @@ const menu = async (m, sock) => {
 │ ⬡ ${prefix}play
 │ ⬡ ${prefix}play2
 │ ⬡ ${prefix}mediafire
+│ ⬡ ${prefix}mediafire2
 │ ⬡ ${prefix}quranvid
 │ ⬡ ${prefix}quraimage
 │ ⬡ ${prefix}surahurdu
@@ -178,11 +181,18 @@ const menu = async (m, sock) => {
 │ ⬡ ${prefix}asmaulhusna
 │ ⬡ ${prefix}prophetname
 │ ⬡ ${prefix}facebook
+│ ⬡ ${prefix}yt
 │ ⬡ ${prefix}fb
 │ ⬡ ${prefix}fbdl
 │ ⬡ ${prefix}ig
 │ ⬡ ${prefix}insta
 │ ⬡ ${prefix}instagram
+│ ⬡ ${prefix}ig2
+│ ⬡ ${prefix}insta2
+│ ⬡ ${prefix}instagram2
+│ ⬡ ${prefix}tweet
+│ ⬡ ${prefix}gdrive
+│ ⬡ ${prefix}app
 │ ⬡ ${prefix}tiktok
 │ ⬡ ${prefix}lyrics
 │ ⬡ ${prefix}pinterest
@@ -190,6 +200,7 @@ const menu = async (m, sock) => {
 │ ⬡ ${prefix}image
 │ ⬡ ${prefix}ringtone
 │ ⬡ ${prefix}playstore
+│ ⬡ ${prefix}weather
 │ ⬡ ${prefix}shazam
 ╰──────────────────⭓
 ════════════════════

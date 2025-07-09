@@ -1,112 +1,201 @@
-import _0x3e6f20 from 'axios';
-import _0x3fa887 from '../../config.cjs';
-const chatbotcommand = async (_0x510964, _0x4ebc10) => {
-  const _0x121b1b = await _0x4ebc10.decodeJid(_0x4ebc10.user.id);
-  const _0x76dda8 = [_0x121b1b, _0x3fa887.OWNER_NUMBER + "@s.whatsapp.net"].includes(_0x510964.sender);
-  const _0x9f8296 = _0x3fa887.PREFIX;
-  const _0x1c7b5a = _0x510964.body.startsWith(_0x9f8296) ? _0x510964.body.slice(_0x9f8296.length).split(" ")[0x0].toLowerCase() : '';
-  const _0x1afcea = _0x510964.body.slice(_0x9f8296.length + _0x1c7b5a.length).trim();
-  if (_0x1c7b5a === 'chatbot') {
-    if (!_0x76dda8) {
-      return _0x510964.reply("😂 *Access Denied*\n_Only bot owner can toggle this feature._");
+import axios from 'axios';
+import config from '../../config.cjs'; // Assuming config.cjs is in the parent directory
+
+const chatbotcommand = async (m, Matrix) => {
+  const botNumber = await Matrix.decodeJid(Matrix.user.id);
+  // Check if the sender is the bot owner or the bot itself
+  const isCreator = [botNumber, config.OWNER_NUMBER + "@s.whatsapp.net"].includes(m.sender);
+  const prefix = config.PREFIX;
+
+  // Extract command and arguments
+  const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(" ")[0].toLowerCase() : '';
+  const args = m.body.slice(prefix.length + cmd.length).trim().split(/\s+/);
+  const subCommand = args[0] ? args[0].toLowerCase() : '';
+  const toggleState = args[1] ? args[1].toLowerCase() : ''; // 'on' or 'off'
+
+  // Handle 'chatbot' command to toggle the feature
+  if (cmd === 'chatbot') {
+    if (!isCreator) {
+      return m.reply("😂 *Access Denied*\n_Only bot owner can toggle this feature._");
     }
-    let _0x28323e;
-    if (_0x1afcea === 'on') {
-      _0x3fa887.CHATBOT = true;
-      _0x28323e = "🟢 Chatbot has been *enabled*. I'm now live!";
-    } else if (_0x1afcea === 'off') {
-      _0x3fa887.CHATBOT = false;
-      _0x28323e = "🔴 Chatbot has been *disabled*. I'll turn off 📴.";
-    } else {
-      _0x28323e = "💡 *Chatbot Usage:*\n\n• " + _0x9f8296 + "chatbot on\n• " + _0x9f8296 + "chatbot off";
+
+    let responseMessage;
+
+    switch (subCommand) {
+      case 'on':
+        config.CHATBOT_PRIVATE = true;
+        config.CHATBOT_GROUP = true;
+        responseMessage = "🟢 Chatbot has been *enabled* for both private and group chats. I'm now live!";
+        break;
+      case 'off':
+        config.CHATBOT_PRIVATE = false;
+        config.CHATBOT_GROUP = false;
+        responseMessage = "🔴 Chatbot has been *disabled* for both private and group chats. I'll turn off 📴.";
+        break;
+      case 'private':
+        if (toggleState === 'on') {
+          config.CHATBOT_PRIVATE = true;
+          responseMessage = "🟢 Chatbot has been *enabled* for private chats.";
+        } else if (toggleState === 'off') {
+          config.CHATBOT_PRIVATE = false;
+          responseMessage = "🔴 Chatbot has been *disabled* for private chats.";
+        } else {
+          responseMessage = `💡 *Chatbot Usage:*\n\n• ${prefix}chatbot private on\n• ${prefix}chatbot private off`;
+        }
+        break;
+      case 'group':
+        if (toggleState === 'on') {
+          config.CHATBOT_GROUP = true;
+          responseMessage = "🟢 Chatbot has been *enabled* for group chats.";
+        } else if (toggleState === 'off') {
+          config.CHATBOT_GROUP = false;
+          responseMessage = "🔴 Chatbot has been *disabled* for group chats.";
+        } else {
+          responseMessage = `💡 *Chatbot Usage:*\n\n• ${prefix}chatbot group on\n• ${prefix}chatbot group off`;
+        }
+        break;
+      default:
+        responseMessage = `💡 *Chatbot Usage:*\n\n` +
+          `• ${prefix}chatbot on: Enable for all chats\n` +
+          `• ${prefix}chatbot off: Disable for all chats\n` +
+          `• ${prefix}chatbot private on: Enable for private chats\n` +
+          `• ${prefix}chatbot private off: Disable for private chats\n` +
+          `• ${prefix}chatbot group on: Enable for group chats\n` +
+          `• ${prefix}chatbot group off: Disable for group chats`;
+        break;
     }
-    return await _0x4ebc10.sendMessage(_0x510964.from, {
-      'text': _0x28323e,
-      'contextInfo': {
-        'forwardingScore': 0xa,
-        'isForwarded': true,
-        'forwardedNewsletterMessageInfo': {
-          'newsletterJid': "120363369453603973@newsletter",
-          'newsletterName': '𝐗ҽσɳ-𝐗ƚҽƈ𝐡'
+
+    // Send the response for the command
+    return await Matrix.sendMessage(m.from, {
+      text: responseMessage,
+      contextInfo: {
+        forwardingScore: 10,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: "120363369453603973@newsletter",
+          newsletterName: '𝐗ҽσɳ-𝐗ƚҽƈ𝐡'
         }
       }
     }, {
-      'quoted': _0x510964
+      quoted: m
     });
   }
-  if (_0x3fa887.CHATBOT) {
-    if (!_0x510964.message || _0x510964.key.fromMe) {
-      return;
-    }
-    const _0x2bc069 = _0x510964.key.remoteJid;
-    const _0x35ca09 = _0x510964.key.participant || _0x2bc069;
-    const _0x27e890 = _0x2bc069.endsWith("@g.us");
-    const _0x36e508 = _0x510964.body || '';
-    if (_0x27e890) {
-      const _0x4302f0 = _0x510964.message?.["extendedTextMessage"]?.["contextInfo"]?.["mentionedJid"]?.["includes"](_0x4ebc10.user.id);
-      const _0x2f5d2b = _0x510964.message?.["extendedTextMessage"]?.["contextInfo"]?.['participant'] === _0x4ebc10.user.id;
-      const _0x3fbcc9 = _0x510964.message?.["extendedTextMessage"]?.["contextInfo"]?.["stanzaId"] && _0x2f5d2b;
-      if (!_0x4302f0 && !_0x2f5d2b && !_0x3fbcc9) {
-        return;
+
+  // Determine if the chatbot should process the current message based on chat type settings
+  const remoteJid = m.key.remoteJid;
+  const isGroup = remoteJid.endsWith("@g.us");
+
+  let shouldProcessChatbot = false;
+
+  if (isGroup) {
+    if (config.CHATBOT_GROUP) {
+      // For groups, still require mention or reply to bot
+      const botMentioned = m.message?.extendedTextMessage?.contextInfo?.mentionedJid?.includes(Matrix.user.id);
+      const botReplied = m.message?.extendedTextMessage?.contextInfo?.participant === Matrix.user.id;
+      const isReplyToBotMessage = m.message?.extendedTextMessage?.contextInfo?.stanzaId && botReplied;
+
+      if (botMentioned || botReplied || isReplyToBotMessage) {
+        shouldProcessChatbot = true;
       }
     }
-    global.userChats = global.userChats || {};
-    global.userChats[_0x35ca09] = global.userChats[_0x35ca09] || [];
-    global.userChats[_0x35ca09].push("👤 User: " + _0x36e508);
-    if (global.userChats[_0x35ca09].length > 0xf) {
-      global.userChats[_0x35ca09].shift();
+  } else { // Private chat
+    if (config.CHATBOT_PRIVATE) {
+      shouldProcessChatbot = true;
     }
-    const _0x11eb4c = global.userChats[_0x35ca09].join("\n");
-    const _0x4a2edc = "\nYou are *Xeon-Xtech*, a smart and helpful AI WhatsApp bot created by Black-Tappy. Your job is to provide accurate, conversational, and friendly responses.\n\n🧠 *Chat History:*\n" + _0x11eb4c + "\n    ";
+  }
+
+  // If chatbot is enabled for this chat type and conditions are met, process the message
+  if (shouldProcessChatbot) {
+    // Ignore messages from the bot itself or empty messages
+    if (!m.message || m.key.fromMe) {
+      return;
+    }
+
+    const participantJid = m.key.participant || remoteJid; // Use participant for group, remoteJid for private
+    const messageContent = m.body || '';
+
+    // --- Chat History Management ---
+    global.userChats = global.userChats || {};
+    global.userChats[participantJid] = global.userChats[participantJid] || [];
+
+    // Add user's message to history
+    global.userChats[participantJid].push("👤 User: " + messageContent);
+
+    // Keep history limited to prevent excessive length
+    if (global.userChats[participantJid].length > 15) {
+      global.userChats[participantJid].shift(); // Remove oldest message
+    }
+
+    const chatHistoryString = global.userChats[participantJid].join("\n");
+
+    // System prompt for the AI
+    const systemPrompt = `You are *Xeon-Xtech*, a smart and helpful AI WhatsApp bot created by Black-Tappy. Your job is to provide accurate, conversational, and friendly responses.
+
+🧠 *Chat History:*\n${chatHistoryString}`;
+
+    // --- API Call to Groq ---
     try {
-      const {
-        data: _0x8d764a
-      } = await _0x3e6f20.post('https://api.groq.com/openai/v1/chat/completions', {
-        'model': "llama3-70b-8192",
-        'messages': [{
-          'role': 'system',
-          'content': _0x4a2edc
+      // Validate API key presence
+      if (!config.GROQ_API_KEY) {
+        console.error("GROQ_API_KEY is not set. Please provide it in your config.");
+        // Optionally, send a message to the owner about the missing key
+        if (isCreator) { // Only inform owner to avoid spamming
+            await Matrix.sendMessage(m.from, { text: "⚠️ Chatbot API key (GROQ_API_KEY) is missing. Please set it in your config to enable full functionality." }, { quoted: m });
+        }
+        return; // Stop execution if API key is missing
+      }
+
+      // Do not send empty messages to the API
+      if (!messageContent.trim()) {
+        return;
+      }
+
+      const { data: groqResponse } = await axios.post('https://api.groq.com/openai/v1/chat/completions', {
+        model: "llama3-70b-8192", // Using the specified model
+        messages: [{
+          role: 'system',
+          content: systemPrompt
         }, {
-          'role': "user",
-          'content': _0x36e508
+          role: "user",
+          content: messageContent
         }]
       }, {
-        'headers': {
-          'Authorization': "Bearer " + _0x3fa887.GROQ_API_KEY,
+        headers: {
+          'Authorization': "Bearer " + config.GROQ_API_KEY,
           'Content-Type': "application/json"
         }
       });
-      const _0x24953d = _0x8d764a.choices?.[0x0]?.["message"]?.['content'] || "🤖 Sorry, I didn’t get that.";
-      global.userChats[_0x35ca09].push("🤖 Bot: " + _0x24953d);
-      await _0x4ebc10.sendMessage(_0x2bc069, {
-        'text': _0x24953d,
-        'contextInfo': {
-          'forwardingScore': 0x5,
-          'isForwarded': true,
-          'forwardedNewsletterMessageInfo': {
-            'newsletterJid': "120363369453603973@newsletter",
-            'newsletterName': "𝐗ҽσɳ-𝐗ƚҽƈ𝐡"
-          }
+
+      const chatbotResponse = groqResponse.choices?.[0]?.message?.content || "🤖 Sorry, I didn’t get that.";
+
+      // Add bot's response to history
+      global.userChats[participantJid].push("🤖 Bot: " + chatbotResponse);
+
+      // Send the chatbot's response
+      await Matrix.sendMessage(remoteJid, {
+        text: chatbotResponse,
+        contextInfo: {
+          forwardingScore: 5,
+          isForwarded: true,
         }
       }, {
-        'quoted': _0x510964
+        quoted: m
       });
-    } catch (_0x398a68) {
-      console.error("Groq error:", _0x398a68.response?.["data"] || _0x398a68.message);
-      await _0x4ebc10.sendMessage(_0x510964.from, {
-        'text': "⚠️ Error getting response from chatbot.",
-        'contextInfo': {
-          'forwardingScore': 0x1,
-          'isForwarded': true,
-          'forwardedNewsletterMessageInfo': {
-            'newsletterJid': "120363369453603973@newsletter",
-            'newsletterName': "𝐗ҽσɳ-𝐗ƚҽƈ𝐡"
-          }
+
+    } catch (error) {
+      console.error("Groq API error:", error.response?.data || error.message);
+      // Send a user-friendly error message, not the raw error
+      await Matrix.sendMessage(m.from, {
+        text: "⚠️ Error getting response from chatbot. Please try again later.",
+        contextInfo: {
+          forwardingScore: 1,
+          isForwarded: true,
         }
       }, {
-        'quoted': _0x510964
+        quoted: m
       });
     }
   }
 };
+
 export default chatbotcommand;

@@ -1,5 +1,6 @@
 import _0x54865f from '../../config.cjs';
 import _0x2097b3 from 'node-fetch';
+
 async function fetchJson(_0x15f3ac, _0x124ff3 = {}) {
   const _0x32d0fb = await _0x2097b3(_0x15f3ac, {
     'method': "GET",
@@ -14,30 +15,40 @@ async function fetchJson(_0x15f3ac, _0x124ff3 = {}) {
   }
   return await _0x32d0fb.json();
 }
+
 const play = async (_0x4ae649, _0x15b006) => {
   const _0x381362 = _0x54865f.PREFIX;
   const _0x5aa761 = _0x4ae649.body.startsWith(_0x381362) ? _0x4ae649.body.slice(_0x381362.length).split(" ")[0x0].toLowerCase() : '';
   const _0x13b03a = _0x4ae649.body.slice(_0x381362.length + _0x5aa761.length).trim();
+
   if (_0x5aa761 === "play") {
     if (!_0x13b03a) {
       return _0x4ae649.reply("🎶 Tell me the song you're in the mood for! 🎶");
     }
+
     try {
       await _0x15b006.sendMessage(_0x4ae649.from, {
         'text': "🔎 Finding \"" + _0x13b03a + "\"..."
       }, {
         'quoted': _0x4ae649
       });
+
       let _0x475888 = await fetchJson("https://api.agatz.xyz/api/ytsearch?message=" + encodeURIComponent(_0x13b03a));
       let _0x4c70d6 = _0x475888.data[0x0];
+
       if (!_0x4c70d6) {
         return _0x4ae649.reply("Hmm, couldn't find that tune. 😔 Maybe try again?");
       }
-      let _0x1ad9ca = await fetchJson("https://api.vreden.my.id/api/ytplaymp3?query=" + _0x4c70d6.url);
-      let _0x20d5d2 = _0x1ad9ca.result.audio;
+
+      // **REPLACED THIS LINE**
+      let _0x1ad9ca = await fetchJson(`https://apis.davidcyriltech.my.id/youtube/mp3?url=${encodeURIComponent(_0x4c70d6.url)}`);
+      
+      let _0x20d5d2 = _0x1ad9ca.result.audio; // Assuming the new API also returns 'audio' within 'result'
+
       if (!_0x20d5d2) {
         return _0x4ae649.reply("⚠️ Couldn't grab the audio. Let's try later! 😔");
       }
+
       await _0x15b006.sendMessage(_0x4ae649.from, {
         'audio': {
           'url': _0x20d5d2
@@ -64,10 +75,12 @@ const play = async (_0x4ae649, _0x15b006) => {
       }, {
         'quoted': _0x4ae649
       });
+
     } catch (_0x46f490) {
       console.error("Error in play command:", _0x46f490);
       _0x4ae649.reply("Hmm, something went wrong. 😅 Let's try again!");
     }
   }
 };
+
 export default play;
